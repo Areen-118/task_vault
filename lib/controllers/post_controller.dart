@@ -48,10 +48,21 @@ class PostController extends ChangeNotifier {
   }
 
   Future<void> updatePost(PostModel post) async {
-    final data = await apiService.updatePost(post.id, post.toJson());
-    final index = posts.indexWhere((p) => p.id == post.id);
-    posts[index] = PostModel.fromJson(data);
-    notifyListeners();
+    try {
+      isLoading = true;
+      notifyListeners();
+
+      final data = await apiService.updatePost(post.id, post.toJson());
+      final index = posts.indexWhere((p) => p.id == post.id);
+      if (index != -1) {
+        posts[index] = PostModel.fromJson(data);
+      }
+    } catch (e) {
+      errorMessage = e.toString();
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> deletePost(int id) async {

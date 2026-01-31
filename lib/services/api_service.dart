@@ -46,7 +46,7 @@ class ApiService {
     final response = await http.post(
       Uri.parse("$baseUrl/posts"),
       headers: {"Content-Type": "application/json; charset=UTF-8"},
-      body: json.encode(data), // <-- encode to JSON string
+      body: json.encode(data),
     );
 
     if (response.statusCode == 201 || response.statusCode == 200) {
@@ -63,8 +63,10 @@ class ApiService {
   ) async {
     final response = await http.put(
       Uri.parse("$baseUrl/posts/$id"),
-      body: data,
+      headers: {"Content-Type": "application/json; charset=UTF-8"},
+      body: json.encode(data),
     );
+
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
