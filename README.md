@@ -10,7 +10,7 @@ A Flutter project for managing posts with search, filter, pagination, and CRUD o
 - Create, edit, delete posts (with undo)
 - View post details with comments
 
-   git clone https://github.com/your-username/task_vault.git
+   git clone https://https://github.com/Areen-118/task_vault.git
 2. Install dependencies:
    ```bash
    flutter pub get
